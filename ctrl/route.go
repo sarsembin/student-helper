@@ -1,6 +1,8 @@
 package ctrl
 
 import (
+	"fmt"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -16,5 +18,5 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 
 // 💩
 func prepend(s string) string {
-	return "/api/studentHelper" + s
+	return fmt.Sprintf("/api/studentHelper%s", s)
 }
