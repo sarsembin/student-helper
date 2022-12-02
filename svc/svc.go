@@ -1,13 +1,16 @@
 package svc
 
-import "studentHelper/svc/universitysvc"
+import (
+	"studentHelper/repo"
+	"studentHelper/svc/universitysvc"
+)
 
 type Services struct {
 	Unisvc universitysvc.Service
 }
 
-func Init() *Services {
+func Init(repos *repo.Repositories) *Services {
 	return &Services{
-		Unisvc: universitysvc.New(),
+		Unisvc: universitysvc.New(repos.Postgrerepo),
 	}
 }

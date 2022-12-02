@@ -2,38 +2,30 @@ package universitysvc
 
 import (
 	"context"
-	"fmt"
+	"studentHelper/repo/postgredb/universitydb"
 )
 
-type CreateRequest struct {
-	ID                                int
-	Title                             string
-	Address                           string
-	Country                           string
-	Region                            string
-	Scholarships                      string
-	MaleToFemale                      string
-	NumberOfStudents                  string
-	TuitionFee                        string
-	PercentageOfInternationalStudents float64
-	Description                       string
-	StudentsPerStaff                  float64
-	AcceptanceRate                    float64
-	AvgACTComposite                   int
-	AvgACTEnglish                     int
-	Rank                              string
-	AvgACTMath                        int
-	AvgSATReadingWriting              int
-	AvgSATMath                        int
-}
+func (s *service) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
+	s.postgredb.Universitydb.Add(&universitydb.University{
+		Title:                    req.Title,
+		Address:                  req.Address,
+		Country:                  req.Country,
+		Region:                   req.Region,
+		Scholarships:             req.Scholarships,
+		MaleToFemale:             req.MaleToFemale,
+		NumberOfStudents:         req.NumberOfStudents,
+		TuitionFee:               req.TuitionFee,
+		PrcInternationalStudents: req.PrcInternationalStudents,
+		Description:              req.Description,
+		StudentsPerStaff:         req.StudentsPerStaff,
+		AcceptanceRate:           req.AcceptanceRate,
+		AvgACTComposite:          req.AvgACTComposite,
+		AvgACTEnglish:            req.AvgACTEnglish,
+		Rank:                     req.Rank,
+		AvgACTMath:               req.AvgACTMath,
+		AvgSATReadingWriting:     req.AvgSATReadingWriting,
+		AvgSATMath:               req.AvgSATMath,
+	})
 
-type CreateResponse struct {
-}
-
-func (s *service) Add(context.Context, *CreateRequest) (*CreateResponse, error) {
-	res := &CreateResponse{}
-
-	fmt.Println("amogus")
-
-	return res, nil
+	return &CreateResponse{}, nil
 }

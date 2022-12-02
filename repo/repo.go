@@ -9,10 +9,10 @@ type Repositories struct {
 	Postgrerepo postgredb.Repository
 }
 
-func New(res res.Resources) *Repositories {
-	postgredb.New()
+func Init(res *res.Resources) *Repositories {
+	postgredb := postgredb.New(res.Postgres)
 
 	return &Repositories{
-		res: res,
+		Postgrerepo: *postgredb,
 	}
 }

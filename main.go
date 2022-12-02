@@ -14,14 +14,14 @@ func main() {
 	// Echo instance
 	e := echo.New()
 
-	res, err := res.New()
+	res, err := res.Init()
 	if err != nil {
 		log.Fatalf("res init error: %s", err)
 	}
 
-	repo := repo.New(res)
+	repo := repo.Init(res)
 
-	svc := svc.Init()
+	svc := svc.Init(repo)
 
 	ctrl := ctrl.Init(svc)
 

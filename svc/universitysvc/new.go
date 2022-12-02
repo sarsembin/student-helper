@@ -2,6 +2,7 @@ package universitysvc
 
 import (
 	"context"
+	"studentHelper/repo/postgredb"
 )
 
 type Service interface {
@@ -9,9 +10,11 @@ type Service interface {
 }
 
 type service struct {
+	postgredb postgredb.Repository
 }
 
-func New() Service {
+func New(pgdb postgredb.Repository) Service {
 	return &service{
+		postgredb: pgdb,
 	}
 }

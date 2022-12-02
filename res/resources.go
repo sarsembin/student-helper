@@ -8,7 +8,7 @@ type Resources struct {
 	Postgres *pg.DB
 }
 
-func New() (*Resources, error) {
+func Init() (*Resources, error) {
 	pg, err := newPostgres()
 	if err != nil {
 		return nil, err
