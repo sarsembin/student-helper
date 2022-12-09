@@ -1,6 +1,6 @@
 package universitescoredb
 
-//nolint:go-staticcheck //def
+//nolint:unused //def
 type Entity struct {
 	tableName struct{} `pg:"studentHelper_universitescore" `
 	ID        int      `pg:"id,pk"`

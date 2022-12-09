@@ -12,7 +12,7 @@ import (
 func (c *ctrl) Get(ctx echo.Context) error {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		echo.NewHTTPError(http.StatusBadRequest, err.Error())
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
 	res, err := c.svc.Get(ctx.Request().Context(), &universitysvc.GetRequest{ID: id})
@@ -54,7 +54,7 @@ func (c *ctrl) Put(ctx echo.Context) error {
 
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		echo.NewHTTPError(http.StatusBadRequest, err.Error())
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
 	payload.ID = id
@@ -70,7 +70,7 @@ func (c *ctrl) Put(ctx echo.Context) error {
 func (c *ctrl) Delete(ctx echo.Context) error {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		echo.NewHTTPError(http.StatusBadRequest, err.Error())
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
 	res, err := c.svc.Delete(ctx.Request().Context(), &universitysvc.DeleteRequest{ID: id})

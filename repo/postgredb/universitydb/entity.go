@@ -1,6 +1,6 @@
 package universitydb
 
-//nolint:go-staticcheck //def
+//nolint:unused //def
 type Entity struct {
 	tableName                struct{} `pg:"studentHelper_university" `
 	ID                       int      `pg:"id,pk"`
