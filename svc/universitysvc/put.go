@@ -5,15 +5,16 @@ import (
 	"studentHelper/repo/postgredb/universitydb"
 )
 
-type CreateRequest struct {
+type PutRequest struct {
 	JsonEntity
 }
 
-type CreateResponse struct {
+type PutResponse struct {
 }
 
-func (s *service) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
-	err := s.postgredb.Universitydb.Add(&universitydb.Entity{
+func (s *service) Put(ctx context.Context, req *PutRequest) (*PutResponse, error) {
+	err := s.postgredb.Universitydb.Put(&universitydb.Entity{
+		ID:                       req.ID,
 		Title:                    req.Title,
 		Address:                  req.Address,
 		Country:                  req.Country,
@@ -37,5 +38,5 @@ func (s *service) Add(ctx context.Context, req *CreateRequest) (*CreateResponse,
 		return nil, err
 	}
 
-	return &CreateResponse{}, nil
+	return &PutResponse{}, nil
 }

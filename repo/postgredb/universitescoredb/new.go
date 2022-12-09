@@ -1,4 +1,4 @@
-package universitydb
+package universitescoredb
 
 import "github.com/go-pg/pg/v10"
 

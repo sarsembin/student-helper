@@ -1,7 +1,8 @@
 package universitydb
 
-type University struct {
-	tableName                struct{} `pg:"studentHelper_university"`
+//nolint:go-staticcheck //def
+type Entity struct {
+	tableName                struct{} `pg:"studentHelper_university" `
 	ID                       int      `pg:"id,pk"`
 	Title                    string   `pg:"title"`
 	Address                  string   `pg:"address"`
@@ -9,7 +10,7 @@ type University struct {
 	Region                   string   `pg:"region"`
 	Scholarships             string   `pg:"scholarships"`
 	MaleToFemale             string   `pg:"maleToFemale"`
-	NumberOfStudents         string   `pg:"numberOfStudents"`
+	NumberOfStudents         int      `pg:"numberOfStudents"`
 	TuitionFee               string   `pg:"tuitFee"`
 	PrcInternationalStudents float64  `pg:"percentageOfInternationalStudents"`
 	Description              string   `pg:"description"`

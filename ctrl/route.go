@@ -1,8 +1,6 @@
 package ctrl
 
 import (
-	"fmt"
-
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -12,11 +10,13 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
+	// Group
+	stHelper := e.Group("/api/studentHelper")
 	// Routes
-	e.POST(prepend("/university"), c.unictrl.Post)
-}
+	stHelper.GET("/university/:id", c.unictrl.Get)
+	stHelper.GET("/university", c.unictrl.GetAll)
+	stHelper.POST("/university", c.unictrl.Post)
+	stHelper.PUT("/university/:id", c.unictrl.Put)
+	stHelper.DELETE("/university/:id", c.unictrl.Delete)
 
-// 💩
-func prepend(s string) string {
-	return fmt.Sprintf("/api/studentHelper%s", s)
 }

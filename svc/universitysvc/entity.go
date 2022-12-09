@@ -1,13 +1,14 @@
 package universitysvc
 
-type CreateRequest struct {
+type JsonEntity struct {
+	ID                       int     `json:"id"`
 	Title                    string  `json:"title"`
 	Address                  string  `json:"address"`
 	Country                  string  `json:"country"`
 	Region                   string  `json:"region"`
 	Scholarships             string  `json:"scholarships"`
 	MaleToFemale             string  `json:"maleToFemale"`
-	NumberOfStudents         string  `json:"numberOfStudents"`
+	NumberOfStudents         int     `json:"numberOfStudents"`
 	TuitionFee               string  `json:"tuitFee"`
 	PrcInternationalStudents float64 `json:"percentageOfInternationalStudents"`
 	Description              string  `json:"description"`
@@ -19,7 +20,4 @@ type CreateRequest struct {
 	AvgACTMath               int     `json:"averageACTMath"`
 	AvgSATReadingWriting     int     `json:"averageSATEvidenceBasedReadingWriting"`
 	AvgSATMath               int     `json:"averageSATMath"`
-}
-
-type CreateResponse struct {
 }
