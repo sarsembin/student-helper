@@ -43,7 +43,7 @@ func (c *ctrl) Post(ctx echo.Context) error {
 
 	res, err := c.svc.Add(ctx.Request().Context(), payload)
 	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, err)
+		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
 
 	return ctx.JSON(http.StatusOK, &res)
