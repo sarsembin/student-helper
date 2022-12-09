@@ -1,8 +1,8 @@
-package universitysvc
+package universitescoresvc
 
 import (
 	"context"
-	"studentHelper/repo/postgredb/universitydb"
+	"studentHelper/repo/postgredb/universitescoredb"
 )
 
 type Service interface {
@@ -14,10 +14,10 @@ type Service interface {
 }
 
 type service struct {
-	repo universitydb.Repository
+	repo universitescoredb.Repository
 }
 
-func New(repo universitydb.Repository) Service {
+func New(repo universitescoredb.Repository) Service {
 	return &service{
 		repo: repo,
 	}

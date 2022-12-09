@@ -1,4 +1,4 @@
-package universitysvc
+package universitescoresvc
 
 import (
 	"context"

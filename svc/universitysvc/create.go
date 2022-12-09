@@ -13,7 +13,7 @@ type CreateResponse struct {
 }
 
 func (s *service) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
-	err := s.postgredb.Universitydb.Add(&universitydb.Entity{
+	err := s.repo.Add(&universitydb.Entity{
 		Title:                    req.Title,
 		Address:                  req.Address,
 		Country:                  req.Country,

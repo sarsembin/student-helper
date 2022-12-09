@@ -2,7 +2,7 @@ package universitydb
 
 //nolint:unused //def
 type Entity struct {
-	tableName                struct{} `pg:"studentHelper_university" `
+	tableName                struct{} `pg:"studentHelper_university"`
 	ID                       int      `pg:"id,pk"`
 	Title                    string   `pg:"title"`
 	Address                  string   `pg:"address"`

@@ -1,7 +1,6 @@
 package universitysvc
 
 type JsonEntity struct {
-	ID                       int     `json:"id"`
 	Title                    string  `json:"title"`
 	Address                  string  `json:"address"`
 	Country                  string  `json:"country"`

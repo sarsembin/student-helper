@@ -8,40 +8,43 @@ type GetAllRequest struct {
 }
 
 type GetAllResponse struct {
-	Universities []JsonEntity
+	Data []Data `json:"data"`
 }
 
 func (s *service) GetAll(ctx context.Context, req *GetAllRequest) (*GetAllResponse, error) {
-	res, err := s.postgredb.Universitydb.GetAll()
+	res, err := s.repo.GetAll()
 	if err != nil {
 		return nil, err
 	}
 
-	unis := make([]JsonEntity, len(res))
+	data := make([]Data, len(res))
 
 	for i := range res {
-		unis = append(unis, JsonEntity{
-			ID:                       res[i].ID,
-			Title:                    res[i].Title,
-			Address:                  res[i].Address,
-			Country:                  res[i].Country,
-			Region:                   res[i].Region,
-			Scholarships:             res[i].Scholarships,
-			MaleToFemale:             res[i].MaleToFemale,
-			NumberOfStudents:         res[i].NumberOfStudents,
-			TuitionFee:               res[i].TuitionFee,
-			PrcInternationalStudents: res[i].PrcInternationalStudents,
-			Description:              res[i].Description,
-			StudentsPerStaff:         res[i].StudentsPerStaff,
-			AcceptanceRate:           res[i].AcceptanceRate,
-			AvgACTComposite:          res[i].AvgACTComposite,
-			AvgACTEnglish:            res[i].AvgACTEnglish,
-			AvgACTMath:               res[i].AvgACTMath,
-			AvgSATReadingWriting:     res[i].AvgSATReadingWriting,
-			AvgSATMath:               res[i].AvgSATReadingWriting,
-			Rank:                     res[i].Rank,
-		})
+		data = append(data, Data{
+			ID: res[i].ID,
+			JsonEntity: JsonEntity{
+				Title:                    res[i].Title,
+				Address:                  res[i].Address,
+				Country:                  res[i].Country,
+				Region:                   res[i].Region,
+				Scholarships:             res[i].Scholarships,
+				MaleToFemale:             res[i].MaleToFemale,
+				NumberOfStudents:         res[i].NumberOfStudents,
+				TuitionFee:               res[i].TuitionFee,
+				PrcInternationalStudents: res[i].PrcInternationalStudents,
+				Description:              res[i].Description,
+				StudentsPerStaff:         res[i].StudentsPerStaff,
+				AcceptanceRate:           res[i].AcceptanceRate,
+				AvgACTComposite:          res[i].AvgACTComposite,
+				AvgACTEnglish:            res[i].AvgACTEnglish,
+				AvgACTMath:               res[i].AvgACTMath,
+				AvgSATReadingWriting:     res[i].AvgSATReadingWriting,
+				AvgSATMath:               res[i].AvgSATReadingWriting,
+				Rank:                     res[i].Rank,
+			},
+		},
+		)
 	}
 
-	return &GetAllResponse{Universities: unis}, nil
+	return &GetAllResponse{Data: data}, nil
 }

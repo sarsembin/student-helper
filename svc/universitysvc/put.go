@@ -6,6 +6,7 @@ import (
 )
 
 type PutRequest struct {
+	ID int `json:"id"`
 	JsonEntity
 }
 
@@ -13,7 +14,7 @@ type PutResponse struct {
 }
 
 func (s *service) Put(ctx context.Context, req *PutRequest) (*PutResponse, error) {
-	err := s.postgredb.Universitydb.Put(&universitydb.Entity{
+	err := s.repo.Put(&universitydb.Entity{
 		ID:                       req.ID,
 		Title:                    req.Title,
 		Address:                  req.Address,
