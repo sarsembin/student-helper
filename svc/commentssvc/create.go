@@ -1,8 +1,8 @@
-package universitescoresvc
+package commentssvc
 
 import (
 	"context"
-	"studentHelper/repo/postgredb/universitescoredb"
+	"studentHelper/repo/postgredb/commentsdb"
 )
 
 type CreateRequest struct {
@@ -13,10 +13,10 @@ type CreateResponse struct {
 }
 
 func (s *service) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
-	err := s.repo.Add(&universitescoredb.Entity{
-		Title:        req.Title,
-		Eval:         req.Eval,
-		UniversityID: req.UniID,
+	err := s.repo.Add(&commentsdb.Entity{
+		Content:      req.Content,
+		UserID:       req.UserID,
+		UniversityID: req.UniversityID,
 	})
 	if err != nil {
 		return nil, err

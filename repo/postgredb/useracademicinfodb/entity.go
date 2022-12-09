@@ -2,7 +2,7 @@ package useracademicinfodb
 
 //nolint:unused //def
 type Entity struct {
-	tableName       struct{} `pg:"studentHelper_universitescore"`
+	tableName       struct{} `pg:"studentHelper_academicinformation"`
 	ID              int      `pg:"id,pk"`
 	AvgACTComposite string   `pg:"averageACTComposite"`
 	AvgACTEnglish   string   `pg:"averageACTEnglish"`

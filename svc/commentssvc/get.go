@@ -1,4 +1,4 @@
-package universitescoresvc
+package commentssvc
 
 import (
 	"context"
@@ -26,9 +26,9 @@ func (s *service) Get(ctx context.Context, req *GetRequest) (*GetResponse, error
 	return &GetResponse{Data: Data{
 		ID: req.ID,
 		JsonEntity: JsonEntity{
-			Title: res.Title,
-			Eval:  res.Eval,
-			UniID: res.UniversityID,
-		},
+		Content:      res.Content,
+		UserID:       res.UserID,
+		UniversityID: res.UniversityID,
+	},
 	}}, nil
 }

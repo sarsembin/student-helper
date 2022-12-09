@@ -1,4 +1,4 @@
-package universitescoresvc
+package commentssvc
 
 import (
 	"context"
@@ -23,9 +23,9 @@ func (s *service) GetAll(ctx context.Context, req *GetAllRequest) (*GetAllRespon
 		data = append(data, Data{
 			ID: res[i].ID,
 			JsonEntity: JsonEntity{
-				Title: res[i].Title,
-				Eval:  res[i].Eval,
-				UniID: res[i].UniversityID,
+				Content:      res[i].Content,
+				UserID:       res[i].UserID,
+				UniversityID: res[i].UniversityID,
 			},
 		})
 	}

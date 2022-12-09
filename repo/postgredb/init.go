@@ -1,6 +1,7 @@
 package postgredb
 
 import (
+	"studentHelper/repo/postgredb/commentsdb"
 	"studentHelper/repo/postgredb/universitescoredb"
 	"studentHelper/repo/postgredb/universitydb"
 	"studentHelper/repo/postgredb/useracademicinfodb"
@@ -14,6 +15,7 @@ type Repository struct {
 	Universitescoredb  universitescoredb.Repository
 	Userdb             userdb.Repository
 	UserAcademicInfodb useracademicinfodb.Repository
+	Commentsdb         commentsdb.Repository
 }
 
 func New(pg *pg.DB) *Repository {
@@ -21,11 +23,13 @@ func New(pg *pg.DB) *Repository {
 	Universitescoredb := universitescoredb.New(pg)
 	Userdb := userdb.New(pg)
 	UserAcademicInfodb := useracademicinfodb.New(pg)
+	Commentsdb := commentsdb.New(pg)
 
 	return &Repository{
 		Universitydb:       universityDB,
 		Universitescoredb:  Universitescoredb,
 		Userdb:             Userdb,
 		UserAcademicInfodb: UserAcademicInfodb,
+		Commentsdb:         Commentsdb,
 	}
 }

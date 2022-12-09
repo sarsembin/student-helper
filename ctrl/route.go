@@ -29,6 +29,11 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	stHelper.POST("/universiteScores", c.uniscorectrl.Post)
 	stHelper.PUT("/universiteScores/:id", c.uniscorectrl.Put)
 	stHelper.DELETE("/universiteScores/:id", c.uniscorectrl.Delete)
+	// Comments
+	stHelper.GET("/university/:id/comments", c.commentsctrl.GetAll)
+	stHelper.POST("/university/:id/comments", c.uniscorectrl.Post)
+	stHelper.PUT("/university/:id/comments", c.uniscorectrl.Put)
+	stHelper.DELETE("/university/:id/comments", c.uniscorectrl.Delete)
 	// User
 	user.POST("/register", c.userctrl.Register)
 	user.POST("/login", c.userctrl.Login)
