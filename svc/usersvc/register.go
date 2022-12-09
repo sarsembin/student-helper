@@ -29,11 +29,6 @@ const minpasslen = 8
 var ErrInvalidPass error = fmt.Errorf("invalid password")
 
 func (s *service) Register(ctx context.Context, req *RegisterRequest) (*RegisterResponse, error) {
-	// sanitize pass
-	if len(req.Password) < minpasslen {
-		return nil, fmt.Errorf("%w: %s", ErrInvalidPass, fmt.Sprintf("password is too short, should be at least %v long", minpasslen))
-	}
-
 	// sanitize email
 	_, err := mail.ParseAddress(req.Email)
 	if err != nil {
@@ -41,7 +36,7 @@ func (s *service) Register(ctx context.Context, req *RegisterRequest) (*Register
 	}
 
 	// hash and salt, but dont bake yet
-	pass, err := hashAndSalt([]byte(req.Password))
+	pass, err := SanitizeAndHash(req.Password)
 	if err != nil {
 		return nil, err
 	}
@@ -73,11 +68,17 @@ func (s *service) Register(ctx context.Context, req *RegisterRequest) (*Register
 	return &RegisterResponse{}, nil
 }
 
-func hashAndSalt(pwd []byte) (string, error) {
-	hash, err := bcrypt.GenerateFromPassword(pwd, bcrypt.DefaultCost)
+func SanitizeAndHash(pass string) (string, error) {
+	// sanitize pass
+	if len(pass) < minpasslen {
+		return "", fmt.Errorf("%w: %s", ErrInvalidPass, fmt.Sprintf("password is too short, should be at least %v long", minpasslen))
+	}
+
+	// hash and salt, but dont bake yet
+	hashBytes, err := bcrypt.GenerateFromPassword([]byte(pass), bcrypt.DefaultCost)
 	if err != nil {
 		return "", err
 	}
 
-	return string(hash), nil
+	return string(hashBytes), nil
 }

@@ -16,6 +16,7 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 
 	// Group
 	stHelper := e.Group("/api/studentHelper")
+	user := e.Group("/user")
 	// University
 	stHelper.GET("/university/:id", c.unictrl.Get)
 	stHelper.GET("/university", c.unictrl.GetAll)
@@ -29,6 +30,7 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	stHelper.PUT("/universiteScores/:id", c.uniscorectrl.Put)
 	stHelper.DELETE("/universiteScores/:id", c.uniscorectrl.Delete)
 	// user
-	e.POST("/register", c.userctrl.Register)
-	e.POST("/login", c.userctrl.Login)
+	user.POST("/register", c.userctrl.Register)
+	user.POST("/login", c.userctrl.Login)
+	user.POST("/edit", c.userctrl.Edit)
 }

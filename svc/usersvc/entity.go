@@ -4,7 +4,7 @@ import "time"
 
 type JsonEntity struct {
 	Password    string    `json:"password"`
-	LastLogin   time.Time    `json:"last_login"`
+	LastLogin   time.Time `json:"last_login"`
 	IsSuperuser bool      `json:"is_superuser"`
 	FirstName   string    `json:"first_name"`
 	LastName    string    `json:"last_name"`

@@ -8,9 +8,7 @@ import (
 
 type Ctrl interface {
 	Get(echo.Context) error
-	GetAll(ctx echo.Context) error
-	Post(echo.Context) error
-	Put(echo.Context) error
+	Edit(ctx echo.Context) error
 	Delete(echo.Context) error
 	Register(ctx echo.Context) error
 	Login(ctx echo.Context) error
