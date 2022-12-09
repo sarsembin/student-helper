@@ -5,8 +5,8 @@ func (c *repository) Add(e *Entity) (err error) {
 	return err
 }
 
-func (c *repository) GetAll() (res []Entity, err error) {
-	err = c.db.Model(&res).Select()
+func (c *repository) GetAll(uniID int) (res []Entity, err error) {
+	err = c.db.Model(&res).Where("university_id_id = ?0", uniID).Select()
 	return res, err
 }
 

@@ -5,6 +5,7 @@ import (
 )
 
 type GetAllRequest struct {
+	UniID int
 }
 
 type GetAllResponse struct {
@@ -12,7 +13,7 @@ type GetAllResponse struct {
 }
 
 func (s *service) GetAll(ctx context.Context, req *GetAllRequest) (*GetAllResponse, error) {
-	res, err := s.repo.GetAll()
+	res, err := s.repo.GetAll(req.UniID)
 	if err != nil {
 		return nil, err
 	}

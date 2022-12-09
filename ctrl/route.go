@@ -6,14 +6,15 @@ import (
 )
 
 func (c *Controllers) RoutesRegister(e *echo.Echo) {
+	jwtConfig := middleware.JWTConfig{
+		SigningKey:  []byte("secret"),
+		TokenLookup: "header:Authorization",
+		ParseTokenFunc: ,
+	}
+
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.Use(middleware.JWTWithConfig(middleware.JWTConfig{
-		SigningKey:  []byte("secret"),
-		TokenLookup: "query:token",
-	}))
-
 	// Group
 	stHelper := e.Group("/api/studentHelper")
 	user := e.Group("/user")
@@ -29,11 +30,11 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	stHelper.POST("/universiteScores", c.uniscorectrl.Post)
 	stHelper.PUT("/universiteScores/:id", c.uniscorectrl.Put)
 	stHelper.DELETE("/universiteScores/:id", c.uniscorectrl.Delete)
-	// Comments
+	// Comments //TODO: all
 	stHelper.GET("/university/:id/comments", c.commentsctrl.GetAll)
-	stHelper.POST("/university/:id/comments", c.uniscorectrl.Post)
-	stHelper.PUT("/university/:id/comments", c.uniscorectrl.Put)
-	stHelper.DELETE("/university/:id/comments", c.uniscorectrl.Delete)
+	stHelper.POST("/university/:id/comments", c.commentsctrl.Post, middleware.JWTWithConfig(jwtConfig))
+	stHelper.PUT("/university/:id/comments", c.commentsctrl.Put)
+	stHelper.DELETE("/university/:id/comments", c.commentsctrl.Delete)
 	// User
 	user.POST("/register", c.userctrl.Register)
 	user.POST("/login", c.userctrl.Login)

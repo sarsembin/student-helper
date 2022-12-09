@@ -29,11 +29,12 @@ const expirationTime = time.Hour
 var ErrInvalidCredentials error = fmt.Errorf("invalid credentials")
 
 func (s *service) Login(ctx context.Context, req *LoginRequest) (*LoginResponse, error) {
+	fmt.Println("amogus")
 	acc, err := s.repo.GetByEmail(req.Email)
 	if err != nil {
 		return nil, ErrInvalidCredentials
 	}
-
+	fmt.Println("amogus1")
 	err = bcrypt.CompareHashAndPassword([]byte(acc.Password), []byte(req.Password))
 	if err != nil {
 		return nil, ErrInvalidCredentials

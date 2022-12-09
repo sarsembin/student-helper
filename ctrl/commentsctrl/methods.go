@@ -26,7 +26,12 @@ func (c *ctrl) Get(ctx echo.Context) error {
 
 // GET ALL
 func (c *ctrl) GetAll(ctx echo.Context) error {
-	res, err := c.svc.GetAll(ctx.Request().Context(), &commentssvc.GetAllRequest{})
+	uniid, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
+	res, err := c.svc.GetAll(ctx.Request().Context(), &commentssvc.GetAllRequest{UniID: uniid})
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
@@ -36,6 +41,11 @@ func (c *ctrl) GetAll(ctx echo.Context) error {
 
 // POST
 func (c *ctrl) Post(ctx echo.Context) error {
+	_, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
 	payload := new(commentssvc.CreateRequest)
 	if err := ctx.Bind(&payload); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Errorf("%w: %s", http.ErrBodyNotAllowed, err))
@@ -51,6 +61,11 @@ func (c *ctrl) Post(ctx echo.Context) error {
 
 // PUT
 func (c *ctrl) Put(ctx echo.Context) error {
+	_, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
 	payload := new(commentssvc.PutRequest)
 	if err := ctx.Bind(&payload); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Errorf("%w: %s", http.ErrBodyNotAllowed, err))
@@ -73,6 +88,11 @@ func (c *ctrl) Put(ctx echo.Context) error {
 
 // DELETE
 func (c *ctrl) Delete(ctx echo.Context) error {
+	_, err := strconv.Atoi(ctx.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
