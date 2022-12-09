@@ -28,6 +28,7 @@ func (s *service) Get(ctx context.Context, req *GetRequest) (*GetResponse, error
 		JsonEntity: JsonEntity{
 			Title: res.Title,
 			Eval:  res.Eval,
+			UniID: res.University_id,
 		},
 	}}, nil
 }

@@ -1,10 +1,10 @@
-package universityctrl
+package universitescorectrl
 
 import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"studentHelper/svc/universitysvc"
+	"studentHelper/svc/universitescoresvc"
 
 	"github.com/labstack/echo/v4"
 )
@@ -16,7 +16,7 @@ func (c *ctrl) Get(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
-	res, err := c.svc.Get(ctx.Request().Context(), &universitysvc.GetRequest{ID: id})
+	res, err := c.svc.Get(ctx.Request().Context(), &universitescoresvc.GetRequest{ID: id})
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
@@ -26,7 +26,7 @@ func (c *ctrl) Get(ctx echo.Context) error {
 
 // GET ALL
 func (c *ctrl) GetAll(ctx echo.Context) error {
-	res, err := c.svc.GetAll(ctx.Request().Context(), &universitysvc.GetAllRequest{})
+	res, err := c.svc.GetAll(ctx.Request().Context(), &universitescoresvc.GetAllRequest{})
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
@@ -36,7 +36,7 @@ func (c *ctrl) GetAll(ctx echo.Context) error {
 
 // POST
 func (c *ctrl) Post(ctx echo.Context) error {
-	payload := new(universitysvc.CreateRequest)
+	payload := new(universitescoresvc.CreateRequest)
 	if err := ctx.Bind(&payload); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Errorf("%w: %s", http.ErrBodyNotAllowed, err))
 	}
@@ -51,7 +51,7 @@ func (c *ctrl) Post(ctx echo.Context) error {
 
 // PUT
 func (c *ctrl) Put(ctx echo.Context) error {
-	payload := new(universitysvc.PutRequest)
+	payload := new(universitescoresvc.PutRequest)
 	if err := ctx.Bind(&payload); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Errorf("%w: %s", http.ErrBodyNotAllowed, err))
 	}
@@ -78,7 +78,7 @@ func (c *ctrl) Delete(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
-	res, err := c.svc.Delete(ctx.Request().Context(), &universitysvc.DeleteRequest{ID: id})
+	res, err := c.svc.Delete(ctx.Request().Context(), &universitescoresvc.DeleteRequest{ID: id})
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}

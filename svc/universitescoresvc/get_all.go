@@ -25,6 +25,7 @@ func (s *service) GetAll(ctx context.Context, req *GetAllRequest) (*GetAllRespon
 			JsonEntity: JsonEntity{
 				Title: res[i].Title,
 				Eval:  res[i].Eval,
+				UniID: res[i].University_id,
 			},
 		})
 	}
