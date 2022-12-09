@@ -6,5 +6,5 @@ type Entity struct {
 	ID            int      `pg:"id,pk"`
 	Title         string   `pg:"title"`
 	Eval          string   `pg:"eval"`
-	University_id int      `pg:"university_id_id,fk:studentHelper_university"`
+	University_id int      `pg:"university_id_id,fk:studentHelper_university_id"`
 }
