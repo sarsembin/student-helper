@@ -11,6 +11,8 @@ type Service interface {
 	GetAll(ctx context.Context, req *GetAllRequest) (*GetAllResponse, error)
 	Put(ctx context.Context, req *PutRequest) (*PutResponse, error)
 	Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error)
+	Register(ctx context.Context, req *RegisterRequest) (*RegisterResponse, error)
+	Login(ctx context.Context, req *LoginRequest) (*LoginResponse, error)
 }
 
 type service struct {

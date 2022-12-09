@@ -10,6 +10,14 @@ func (c *repository) GetAll() (res []Entity, err error) {
 	return res, err
 }
 
+func (c *repository) GetByEmail(email string) (res *Entity, err error) {
+	res = &Entity{Email: email}
+
+	err = c.db.Model(res).Where("email = ?0", email).Select()
+
+	return res, err
+}
+
 func (c *repository) Get(id int) (res *Entity, err error) {
 	res = &Entity{ID: id}
 

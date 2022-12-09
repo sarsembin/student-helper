@@ -8,6 +8,7 @@ type Repository interface {
 	Get(id int) (res *Entity, err error)
 	Put(e *Entity) (err error)
 	Delete(id int) (err error)
+	GetByEmail(email string) (res *Entity, err error)
 }
 
 type repository struct {
