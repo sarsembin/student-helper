@@ -1,6 +1,6 @@
 package ctrl
 
-/*func JWTWithConfig(config JWTConfig) echo.MiddlewareFunc {
+func JWTWithConfig(config JWTConfig) echo.MiddlewareFunc {
 	extractor := jwtFromHeader("Authorization", "Token")
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
@@ -30,4 +30,4 @@ package ctrl
 			return c.JSON(http.StatusForbidden, utils.NewError(ErrJWTInvalid))
 		}
 	}
-}*/
+}

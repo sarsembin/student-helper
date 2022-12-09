@@ -9,10 +9,10 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	/*e.Use(middleware.JWTWithConfig(middleware.JWTConfig{
+	e.Use(middleware.JWTWithConfig(middleware.JWTConfig{
 		SigningKey:  []byte("secret"),
 		TokenLookup: "query:token",
-	}))*/
+	}))
 
 	// Group
 	stHelper := e.Group("/api/studentHelper")
@@ -29,8 +29,13 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	stHelper.POST("/universiteScores", c.uniscorectrl.Post)
 	stHelper.PUT("/universiteScores/:id", c.uniscorectrl.Put)
 	stHelper.DELETE("/universiteScores/:id", c.uniscorectrl.Delete)
-	// user
+	// User
 	user.POST("/register", c.userctrl.Register)
 	user.POST("/login", c.userctrl.Login)
 	user.POST("/edit", c.userctrl.Edit)
+	// User academic info
+	user.GET("/academicInfo", c.uniscorectrl.Get)
+	user.POST("/academicInfo", c.uniscorectrl.Post)
+	user.PUT("/academicInfo", c.uniscorectrl.Put)
+	user.DELETE("/academicInfo", c.uniscorectrl.Delete)
 }
