@@ -6,11 +6,11 @@ import (
 )
 
 func (c *Controllers) RoutesRegister(e *echo.Echo) {
-	jwtConfig := middleware.JWTConfig{
+	/*jwtConfig := middleware.JWTConfig{
 		SigningKey:  []byte("secret"),
 		TokenLookup: "header:Authorization",
 		ParseTokenFunc: ,
-	}
+	}*/
 
 	// Middleware
 	e.Use(middleware.Logger())
@@ -32,7 +32,8 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	stHelper.DELETE("/universiteScores/:id", c.uniscorectrl.Delete)
 	// Comments //TODO: all
 	stHelper.GET("/university/:id/comments", c.commentsctrl.GetAll)
-	stHelper.POST("/university/:id/comments", c.commentsctrl.Post, middleware.JWTWithConfig(jwtConfig))
+	// stHelper.POST("/university/:id/comments", c.commentsctrl.Post, middleware.JWTWithConfig(jwtConfig))
+	stHelper.POST("/university/:id/comments", c.commentsctrl.Post)
 	stHelper.PUT("/university/:id/comments", c.commentsctrl.Put)
 	stHelper.DELETE("/university/:id/comments", c.commentsctrl.Delete)
 	// User
