@@ -15,6 +15,7 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	e.Use(middleware.Secure())
 	// Group
 	stHelper := e.Group("/api/studentHelper")
 	user := e.Group("/user")

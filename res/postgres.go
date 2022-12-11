@@ -11,7 +11,7 @@ const (
 	port = "5432"
 	user = "postgres"
 	pass = "1"
-	db   = "back"
+	db   = "backdev"
 )
 
 func newPostgres() (con *pg.DB, err error) {
