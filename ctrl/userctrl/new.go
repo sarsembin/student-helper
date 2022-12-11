@@ -16,10 +16,12 @@ type Ctrl interface {
 
 type ctrl struct {
 	svc usersvc.Service
+	key string
 }
 
-func New(svc usersvc.Service) Ctrl {
+func New(svc usersvc.Service, key string) Ctrl {
 	return &ctrl{
 		svc: svc,
+		key: key,
 	}
 }

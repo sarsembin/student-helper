@@ -21,7 +21,7 @@ func Init(svc *svc.Services) *Controllers {
 	return &Controllers{
 		unictrl:              universityctrl.New(svc.Unisvc),
 		uniscorectrl:         universitescorectrl.New(svc.UniScoresvc),
-		userctrl:             userctrl.New(svc.Usersvc),
+		userctrl:             userctrl.New(svc.Usersvc, SigningKey),
 		useracademicinfoctrl: useracademicinfoctrl.New(svc.UserAcademicInfosvc),
 		commentsctrl:         commentsctrl.New(svc.Commentssvc),
 	}
