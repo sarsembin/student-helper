@@ -18,7 +18,7 @@ func (s *service) GetAll(ctx context.Context, req *GetAllRequest) (*GetAllRespon
 		return nil, err
 	}
 
-	data := make([]Data, len(res))
+	var data []Data
 
 	for i := range res {
 		data = append(data, Data{
