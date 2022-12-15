@@ -41,7 +41,7 @@ func (c *ctrl) GetAll(ctx echo.Context) error {
 
 // POST
 func (c *ctrl) Post(ctx echo.Context) error {
-	_, err := strconv.Atoi(ctx.Param("id"))
+	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
@@ -50,6 +50,8 @@ func (c *ctrl) Post(ctx echo.Context) error {
 	if err := ctx.Bind(&payload); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Errorf("%w: %s", http.ErrBodyNotAllowed, err))
 	}
+
+	payload.UniversityID = id
 
 	res, err := c.svc.Add(ctx.Request().Context(), payload)
 	if err != nil {
@@ -61,7 +63,7 @@ func (c *ctrl) Post(ctx echo.Context) error {
 
 // PUT
 func (c *ctrl) Put(ctx echo.Context) error {
-	_, err := strconv.Atoi(ctx.Param("id"))
+	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
@@ -71,12 +73,7 @@ func (c *ctrl) Put(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Errorf("%w: %s", http.ErrBodyNotAllowed, err))
 	}
 
-	id, err := strconv.Atoi(ctx.Param("id"))
-	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
-	}
-
-	payload.ID = id
+	payload.UniversityID = id
 
 	res, err := c.svc.Put(ctx.Request().Context(), payload)
 	if err != nil {
@@ -88,11 +85,6 @@ func (c *ctrl) Put(ctx echo.Context) error {
 
 // DELETE
 func (c *ctrl) Delete(ctx echo.Context) error {
-	_, err := strconv.Atoi(ctx.Param("id"))
-	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
-	}
-
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())

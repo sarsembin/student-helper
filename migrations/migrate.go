@@ -12,7 +12,7 @@ import (
 	"github.com/go-pg/pg/v10"
 )
 
-const migrationVersion = 3
+const migrationVersion = 10
 
 // folder name in the project folder
 const dirName = "./migrations/"

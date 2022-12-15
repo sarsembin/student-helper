@@ -14,7 +14,7 @@ func (c *ctrl) Login(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Errorf("%w: %s", http.ErrBodyNotAllowed, err))
 	}
 
-	res, err := c.svc.Login(ctx.Request().Context(), payload)
+	res, err := c.svc.Login(ctx.Request().Context(), payload, c.key)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}

@@ -10,7 +10,7 @@ type Service interface {
 	Edit(ctx context.Context, req *EditRequest) (*EditResponse, error)
 	Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error)
 	Register(ctx context.Context, req *RegisterRequest) (*RegisterResponse, error)
-	Login(ctx context.Context, req *LoginRequest) (*LoginResponse, error)
+	Login(ctx context.Context, req *LoginRequest, key string) (*LoginResponse, error)
 }
 
 type service struct {
