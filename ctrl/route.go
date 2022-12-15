@@ -1,6 +1,7 @@
 package ctrl
 
 import (
+	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -16,6 +17,10 @@ func (c *Controllers) RoutesRegister(e *echo.Echo) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.Secure())
+
+	p := prometheus.NewPrometheus("echo", nil)
+	p.Use(e)
+
 	// Group
 	stHelper := e.Group("/api/studentHelper")
 	user := e.Group("/user")
